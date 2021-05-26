@@ -1,12 +1,11 @@
 import React, { useContext } from "react";
 import ThemeContext from "../Context/TehemeContext";
 import AppTheme from "../Colors";
-import ThemeToggler from "./ThemeToggler";
 
-const HeroSection = () => {
-  const theme = useContext(ThemeContext)[0];
-  const currentTheme = AppTheme[theme];
-
+const HeroSection = (props) => {
+  // const theme = useContext(ThemeContext)[0];
+  const [theme, setTheme] = useContext(ThemeContext);
+  let currentTheme = AppTheme[theme];
   return (
     <div
       style={{
@@ -25,7 +24,9 @@ const HeroSection = () => {
           fontSize: "20px",
           border: `${currentTheme.border}`,
         }}
-        onClick={ThemeToggler.changeThemeMode({ mode: currentTheme })}
+        onClick={() => {
+          setTheme(theme === "light" ? "dark" : "light");
+        }}
       >
         Click Me
       </button>
